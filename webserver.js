@@ -6,6 +6,9 @@ const port = 3000;
 const onePath = path.join(__dirname, 'onedigit.png');
 const twoPath = path.join(__dirname, 'twodigit.png');
 const threePath = path.join(__dirname, 'threedigit.png');
+const fourPath = path.join(__dirname, 'fourdigit.png');
+const fivePath = path.join(__dirname, 'fivedigit.png');
+const sixPath = path.join(__dirname, 'sixdigit.png');
 const winsFilePath = path.join(__dirname, 'wins.txt');
 const fontPath = path.join(__dirname, 'font.ttf');
 let wins = 0;
@@ -73,8 +76,38 @@ const server = http.createServer((req, res) => {
           res.end(data);
         }
       });
-    } else {
+    } else if (wins < 1000) {
       fs.readFile(threePath, (err, data) => {
+        if (err) {
+          res.statusCode = 500;
+          res.end(`Error reading file: ${err}`);
+        } else {
+          res.statusCode = 200;
+          res.end(data);
+        }
+      });
+    } else if (wins < 10000) {
+      fs.readFile(fourPath, (err, data) => {
+        if (err) {
+          res.statusCode = 500;
+          res.end(`Error reading file: ${err}`);
+        } else {
+          res.statusCode = 200;
+          res.end(data);
+        }
+      });
+    } else if (wins < 100000) {
+      fs.readFile(fivePath, (err, data) => {
+        if (err) {
+          res.statusCode = 500;
+          res.end(`Error reading file: ${err}`);
+        } else {
+          res.statusCode = 200;
+          res.end(data);
+        }
+      });
+    } else {
+      fs.readFile(sixPath, (err, data) => {
         if (err) {
           res.statusCode = 500;
           res.end(`Error reading file: ${err}`);
